@@ -2,6 +2,17 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* Target the powered-by element if it has a class */
+.medusa-powered-by {
+  display: none !important;
+}
+
+/* Fallback: Target the structure with SVGs */
+a[href="https://www.medusajs.com"],
+a[href="https://nextjs.org"] {
+  display: none !important;
+}
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {

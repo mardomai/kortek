@@ -16,10 +16,11 @@
     "incremental": true,
     "baseUrl": "./src",
     "paths": {
-      "@lib/*": ["lib/*"],
-      "@modules/*": ["modules/*"],
-      "@pages/*": ["pages/*"]
-    },
+  "@lib/*": ["lib/*"],
+  "@modules/*": ["modules/*"],
+  "@pages/*": ["pages/*"],
+  "@components/*": ["app/components/*"]
+},
     "plugins": [
       {
         "name": "next"
