@@ -1,0 +1,142 @@
+import { useSearchParams, Link } from 'react-router-dom';
+import ProductCard from '../components/ProductCard';
+
+// Mock product data (in a real app, this would come from an API)
+const products = [
+  {
+    id: 1,
+    category: 'metal',
+    name: 'Klassikaline Plekk-katus',
+    price: 29.99,
+    image: 'https://images.unsplash.com/photo-1605800655743-d1f0b29e3f82?w=500',
+    description: 'Kvaliteetne plekk-katuse paneel suurepärase vastupidavuse ja ilmastikukindlusega.',
+  },
+  {
+    id: 2,
+    category: 'tile',
+    name: 'Keraamilised Katusekivid',
+    price: 4.99,
+    image: 'https://images.unsplash.com/photo-1604761773874-5f7831174a02?w=500',
+    description: 'Traditsioonilised keraamilised katusekivid klassikalise välimuse ja pikaajalise kaitsega.',
+  },
+  {
+    id: 3,
+    category: 'eternit',
+    name: 'Eterniit Katuseplaadid',
+    price: 19.99,
+    image: 'https://images.unsplash.com/photo-1605800657235-4c11a97f9f45?w=500',
+    description: 'Vastupidavad eterniitplaadid usaldusväärseks ja kuluefektiivseks katuse lahenduseks.',
+  },
+  {
+    id: 4,
+    category: 'windows',
+    name: 'Katuseaken',
+    price: 299.99,
+    image: 'https://images.unsplash.com/photo-1598977123118-4e20e0d8dc06?w=500',
+    description: 'Kaasaegne katuseaken loomulikuks valgustuseks ja ventilatsiooniks.',
+  },
+  {
+    id: 5,
+    category: 'safety',
+    name: 'Katuse Turvarööbas',
+    price: 159.99,
+    image: 'https://images.unsplash.com/photo-1621203816965-0571e417d523?w=500',
+    description: 'Professionaalne turvarööbaste süsteem katuse hoolduseks ja kaitseks.',
+  },
+  {
+    id: 6,
+    category: 'drainage',
+    name: 'Vihmaveesüsteemi Komplekt',
+    price: 89.99,
+    image: 'https://images.unsplash.com/photo-1518618750560-8f07abde4c4b?w=500',
+    description: 'Täielik vihmaveesüsteemi komplekt koos vihmaveetorude ja ühendustega.',
+  },
+  {
+    id: 7,
+    category: 'accessories',
+    name: 'Plekitööde Komplekt',
+    price: 49.99,
+    image: 'https://images.unsplash.com/photo-1635424040420-c0cef7b37c41?w=500',
+    description: 'Professionaalne plekkdetailide komplekt katuse servadele ja üleminekutele.',
+  },
+];
+
+function Home() {
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get('category');
+
+  const filteredProducts = category
+    ? products.filter(product => product.category === category)
+    : products;
+
+  const categoryTitles = {
+    metal: 'Plekk-katused',
+    tile: 'Kivikatused',
+    eternit: 'Eterniitkatused',
+    windows: 'Katuseaknad',
+    safety: 'Turvatooted',
+    drainage: 'Vihmaveesüsteemid',
+    accessories: 'Katuse lisaplekid ja plekksepatööd',
+  };
+
+  return (
+    <div className="space-y-12">
+      {!category && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Plekk-katused Section */}
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold text-black mb-4">Plekk-katused</h2>
+            <p className="text-gray-600 mb-6">
+              Ruukkit usaldavad tuhanded koduomanikud nii Eestis kui ka kaugemal ja juba üle 25 aasta. Oleme Ruukki ametlik partner ja meie töö on sama kvaliteetne kui Ruukki tooted.
+            </p>
+            <Link
+              to="/?category=metal"
+              className="inline-block bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition-colors"
+            >
+              Plekk-katused
+            </Link>
+          </div>
+
+          {/* Kivikatused Section */}
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold text-black mb-4">Kivikatused</h2>
+            <p className="text-gray-600 mb-6">
+              Tootevalikus on erinevad kivi- ja bituumenkatuste materjalid. Suures tootevalikus orienteerumiseks on meil BMI partnerina pädevad teadmised ning saame need sinu kasuks tööle panna.
+            </p>
+            <Link
+              to="/?category=tile"
+              className="inline-block bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition-colors"
+            >
+              Kivikatused
+            </Link>
+          </div>
+
+          {/* Eterniitkatused Section */}
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold text-black mb-4">Eterniitkatused</h2>
+            <p className="text-gray-600 mb-6">
+              Eterniit kauakestev ja ohutu katusekattematerjal, mis on valmistatud tsemendist, lubjakivist, tselluloosist, veest ja kaasaegses materjalis asbesti asendanud PVA kiududest.
+            </p>
+            <Link
+              to="/?category=eternit"
+              className="inline-block bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition-colors"
+            >
+              Eterniitkatused
+            </Link>
+          </div>
+        </div>
+      )}
+
+      <h1 className="text-3xl font-bold text-black mb-8">
+        {category ? categoryTitles[category] : 'Kõik Tooted'}
+      </h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredProducts.map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default Home; 
