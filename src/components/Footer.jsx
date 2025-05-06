@@ -22,7 +22,7 @@ function Footer() {
           <h3 className="text-xl font-semibold mb-4">Kiirlingid</h3>
           <ul className="space-y-2">
             <li>
-              <Link to="/privacy" className="hover:underline">
+              <Link to="/privacy-policy" className="hover:underline">
                 Isikuandmete kaitse
               </Link>
             </li>

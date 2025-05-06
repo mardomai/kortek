@@ -61,7 +61,7 @@ function Checkout() {
                 value={formData.firstName}
                 onChange={handleInputChange}
                 required
-                className="w-full p-2 border border-secondary rounded"
+                className="w-full p-2 border border-secondary rounded bg-white"
               />
             </div>
             <div>
@@ -72,7 +72,7 @@ function Checkout() {
                 value={formData.lastName}
                 onChange={handleInputChange}
                 required
-                className="w-full p-2 border border-secondary rounded"
+                className="w-full p-2 border border-secondary rounded bg-white"
               />
             </div>
           </div>
@@ -85,7 +85,7 @@ function Checkout() {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border border-secondary rounded"
+              className="w-full p-2 border border-secondary rounded bg-white"
             />
           </div>
 
@@ -97,7 +97,7 @@ function Checkout() {
               value={formData.address}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border border-secondary rounded"
+              className="w-full p-2 border border-secondary rounded bg-white"
             />
           </div>
 
@@ -110,7 +110,7 @@ function Checkout() {
                 value={formData.city}
                 onChange={handleInputChange}
                 required
-                className="w-full p-2 border border-secondary rounded"
+                className="w-full p-2 border border-secondary rounded bg-white"
               />
             </div>
             <div>
@@ -121,7 +121,7 @@ function Checkout() {
                 value={formData.zipCode}
                 onChange={handleInputChange}
                 required
-                className="w-full p-2 border border-secondary rounded"
+                className="w-full p-2 border border-secondary rounded bg-white"
               />
             </div>
           </div>
@@ -136,7 +136,7 @@ function Checkout() {
               value={formData.cardNumber}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border border-secondary rounded"
+              className="w-full p-2 border border-secondary rounded bg-white"
             />
           </div>
 
@@ -150,7 +150,7 @@ function Checkout() {
                 value={formData.expiryDate}
                 onChange={handleInputChange}
                 required
-                className="w-full p-2 border border-secondary rounded"
+                className="w-full p-2 border border-secondary rounded bg-white"
               />
             </div>
             <div>
@@ -161,7 +161,7 @@ function Checkout() {
                 value={formData.cvv}
                 onChange={handleInputChange}
                 required
-                className="w-full p-2 border border-secondary rounded"
+                className="w-full p-2 border border-secondary rounded bg-white"
               />
             </div>
           </div>

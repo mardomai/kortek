@@ -11,11 +11,19 @@ import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import FloatingChatButton from './components/FloatingChatButton';
 import { CartProvider } from './context/CartContext';
+import Fassaadid from './pages/Fassaadid';
+
+const routerOptions = {
+  future: {
+    v7_startTransition: true,
+    v7_relativeSplatPath: true
+  }
+};
 
 function App() {
   return (
     <CartProvider>
-      <Router>
+      <Router {...routerOptions}>
         <div className="min-h-screen bg-white flex flex-col">
           <Navbar />
           <main className="container mx-auto px-4 py-8 flex-grow">
@@ -25,6 +33,7 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/company" element={<Company />} />
+              <Route path="/fassaadid" element={<Fassaadid />} />
               <Route path="/completed-works" element={<CompletedWorks />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />

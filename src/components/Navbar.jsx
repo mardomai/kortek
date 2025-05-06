@@ -21,8 +21,8 @@ function Navbar() {
     <nav className="bg-white text-black shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="text-xl font-bold text-black">
-            Kortek
+          <Link to="/" className="flex items-center">
+            <img src="/logo.png" alt="Kortek" className="h-8 w-auto" />
           </Link>
           
           <div className="hidden md:flex items-center space-x-6">
@@ -53,6 +53,10 @@ function Navbar() {
 
             <Link to="/company" className="text-black">
               Ettevõte
+            </Link>
+
+            <Link to="/fassaadid" className="text-black">
+              Fassaadid
             </Link>
 
             <Link to="/completed-works" className="text-black">

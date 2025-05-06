@@ -8,7 +8,7 @@ const products = [
     category: 'metal',
     name: 'Klassikaline Plekk-katus',
     price: 29.99,
-    image: 'https://images.unsplash.com/photo-1605800655743-d1f0b29e3f82?w=500',
+    image: '/products/metal-roof.jpg',
     description: 'Kvaliteetne plekk-katuse paneel suurepärase vastupidavuse ja ilmastikukindlusega.',
   },
   {
@@ -16,7 +16,7 @@ const products = [
     category: 'tile',
     name: 'Keraamilised Katusekivid',
     price: 4.99,
-    image: 'https://images.unsplash.com/photo-1604761773874-5f7831174a02?w=500',
+    image: '/products/tile-roof.jpg',
     description: 'Traditsioonilised keraamilised katusekivid klassikalise välimuse ja pikaajalise kaitsega.',
   },
   {
@@ -24,7 +24,7 @@ const products = [
     category: 'eternit',
     name: 'Eterniit Katuseplaadid',
     price: 19.99,
-    image: 'https://images.unsplash.com/photo-1605800657235-4c11a97f9f45?w=500',
+    image: '/products/eternit-roof.jpg',
     description: 'Vastupidavad eterniitplaadid usaldusväärseks ja kuluefektiivseks katuse lahenduseks.',
   },
   {
@@ -32,7 +32,7 @@ const products = [
     category: 'windows',
     name: 'Katuseaken',
     price: 299.99,
-    image: 'https://images.unsplash.com/photo-1598977123118-4e20e0d8dc06?w=500',
+    image: '/products/roof-window.jpg',
     description: 'Kaasaegne katuseaken loomulikuks valgustuseks ja ventilatsiooniks.',
   },
   {
@@ -40,7 +40,7 @@ const products = [
     category: 'safety',
     name: 'Katuse Turvarööbas',
     price: 159.99,
-    image: 'https://images.unsplash.com/photo-1621203816965-0571e417d523?w=500',
+    image: '/products/roof-safety.jpg',
     description: 'Professionaalne turvarööbaste süsteem katuse hoolduseks ja kaitseks.',
   },
   {
@@ -48,7 +48,7 @@ const products = [
     category: 'drainage',
     name: 'Vihmaveesüsteemi Komplekt',
     price: 89.99,
-    image: 'https://images.unsplash.com/photo-1518618750560-8f07abde4c4b?w=500',
+    image: '/products/drainage-system.jpg',
     description: 'Täielik vihmaveesüsteemi komplekt koos vihmaveetorude ja ühendustega.',
   },
   {
@@ -56,7 +56,7 @@ const products = [
     category: 'accessories',
     name: 'Plekitööde Komplekt',
     price: 49.99,
-    image: 'https://images.unsplash.com/photo-1635424040420-c0cef7b37c41?w=500',
+    image: '/products/metal-accessories.jpg',
     description: 'Professionaalne plekkdetailide komplekt katuse servadele ja üleminekutele.',
   },
 ];
