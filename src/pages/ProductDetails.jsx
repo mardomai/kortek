@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 
-// Using the same mock data from Home.jsx
 const products = [
   {
     id: 1,

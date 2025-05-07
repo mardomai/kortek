@@ -2,10 +2,9 @@ import { useEffect, useRef } from 'react';
 
 function Company() {
   const mapRef = useRef(null);
-  const location = { lat: 58.26707, lng: 22.49659 }; // Coordinates for Ringtee 11, Kuressaare
+  const location = { lat: 58.26707, lng: 22.49659 }; 
 
   useEffect(() => {
-    // Load Google Maps script
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}`;
     script.async = true;
@@ -14,7 +13,6 @@ function Company() {
     document.head.appendChild(script);
 
     return () => {
-      // Cleanup script when component unmounts
       document.head.removeChild(script);
     };
   }, []);

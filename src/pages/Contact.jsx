@@ -50,13 +50,11 @@ function Contact() {
     try {
       const formDataToSend = new FormData();
       
-      // Add files if they exist
       if (formData.file1) formDataToSend.append('files', formData.file1);
       if (formData.file2) formDataToSend.append('files', formData.file2);
 
-      // Prepare email data
       const emailData = {
-        to: 'maimardo@gmail.com', // Changed recipient email
+        to: 'maimardo@gmail.com', 
         from: formData.email,
         subject: `Uus päring - ${formData.name}`,
         text: `
@@ -69,7 +67,6 @@ ${formData.description}
         `.trim()
       };
 
-      // Add email data to form
       Object.keys(emailData).forEach(key => {
         formDataToSend.append(key, emailData[key]);
       });
@@ -84,7 +81,7 @@ ${formData.description}
       }
 
       setSubmitStatus('success');
-      // Reset form after successful submission
+
       setFormData({
         name: '',
         phone: '',

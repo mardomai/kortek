@@ -31,7 +31,7 @@ function Navbar() {
                 className="flex items-center space-x-1 text-black"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
-                <span>Tooted</span>
+                <span>Katused</span>
                 <ChevronDownIcon className="h-4 w-4" />
               </button>
 

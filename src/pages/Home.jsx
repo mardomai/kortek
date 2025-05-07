@@ -1,7 +1,6 @@
 import { useSearchParams, Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 
-// Mock product data (in a real app, this would come from an API)
 const products = [
   {
     id: 1,
