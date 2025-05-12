@@ -1,5 +1,8 @@
+const express = require('express');
+const router = express.Router();
 const nodemailer = require('nodemailer');
 const multer = require('multer');
+
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
@@ -8,6 +11,7 @@ const upload = multer({
   }
 });
 
+// Create reusable transporter object using SMTP transport
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -16,7 +20,17 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-module.exports = async (req, res) => {
+// Verify transporter configuration
+transporter.verify(function(error, success) {
+  if (error) {
+    console.error('SMTP connection error:', error);
+  } else {
+    console.log('Server is ready to take our messages');
+  }
+});
+
+// POST /api/send-email
+router.post('/', upload.array('files'), async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -53,4 +67,6 @@ module.exports = async (req, res) => {
       res.status(500).json({ error: 'Failed to send email' });
     }
   });
-}; 
+});
+
+module.exports = router; 

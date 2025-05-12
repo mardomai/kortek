@@ -86,7 +86,7 @@ function ProductDetails() {
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
-    navigate('/cart');
+    navigate('/checkout');
   };
 
   return (
@@ -136,7 +136,7 @@ function ProductDetails() {
             onClick={handleAddToCart}
             className="mt-8 w-full bg-accent hover:bg-accent-dark text-white font-medium py-3 px-6 rounded transition-colors"
           >
-            Lisa ostukorvi
+            Osta kohe
           </button>
         </div>
       </div>

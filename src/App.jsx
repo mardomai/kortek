@@ -3,7 +3,6 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
-import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Company from './pages/Company';
 import CompletedWorks from './pages/CompletedWorks';
@@ -30,7 +29,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/product/:id" element={<ProductDetails />} />
-              <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/company" element={<Company />} />
               <Route path="/fassaadid" element={<Fassaadid />} />
