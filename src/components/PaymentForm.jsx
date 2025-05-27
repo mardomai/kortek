@@ -7,8 +7,10 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 
-// Initialize Stripe
+// Initialize Stripe with the publishable key from environment variables
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+
+console.log('Stripe publishable key:', import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const CheckoutForm = ({ amount, orderDetails }) => {
   const stripe = useStripe();
@@ -16,39 +18,56 @@ const CheckoutForm = ({ amount, orderDetails }) => {
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
+  const [paymentIntent, setPaymentIntent] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
+      console.log('Stripe or Elements not loaded');
       return;
     }
 
     setProcessing(true);
+    setError(null);
 
     try {
-      const { error, paymentIntent } = await stripe.confirmPayment({
+      // First, validate the form
+      const { error: submitError } = await elements.submit();
+      if (submitError) {
+        throw submitError;
+      }
+
+      // Then confirm the payment
+      const { error: confirmError, paymentIntent: confirmedIntent } = await stripe.confirmPayment({
         elements,
         confirmParams: {
           return_url: `${window.location.origin}/payment-success`,
-          payment_method_data: {
-            billing_details: {
-              email: orderDetails?.email,
-            },
-          },
         },
+        redirect: 'if_required',
       });
 
-      if (error) {
-        setError(error.message);
-        setProcessing(false);
-      } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+      if (confirmError) {
+        throw confirmError;
+      }
+
+      if (confirmedIntent.status === 'succeeded') {
         setSucceeded(true);
-        setProcessing(false);
+        setPaymentIntent(confirmedIntent);
+      } else if (confirmedIntent.status === 'requires_action') {
+        // Handle 3D Secure authentication if needed
+        const { error: actionError } = await stripe.handleNextAction({
+          clientSecret: confirmedIntent.client_secret
+        });
+        
+        if (actionError) {
+          throw actionError;
+        }
       }
     } catch (err) {
       console.error('Payment error:', err);
-      setError('Makse töötlemisel tekkis viga. Palun proovige uuesti.');
+      setError(err.message || 'Makse töötlemisel tekkis viga. Palun proovige uuesti.');
+    } finally {
       setProcessing(false);
     }
   };
@@ -101,12 +120,24 @@ const CheckoutForm = ({ amount, orderDetails }) => {
           <h2 className="text-xl font-semibold mb-4">Makseandmed</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="bg-white rounded-lg">
-              <PaymentElement />
+              <PaymentElement 
+                options={{
+                  layout: {
+                    type: 'tabs',
+                    defaultCollapsed: false,
+                  },
+                }}
+              />
             </div>
 
             {error && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
-                {error}
+              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                <div className="flex items-center gap-2 text-red-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                  <span>{error}</span>
+                </div>
               </div>
             )}
 
@@ -157,16 +188,21 @@ const CheckoutForm = ({ amount, orderDetails }) => {
 
 const PaymentForm = ({ amount, orderDetails }) => {
   const [clientSecret, setClientSecret] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const createPaymentIntent = async () => {
       try {
+        if (!amount || amount <= 0) {
+          throw new Error('Invalid amount');
+        }
+
         const response = await fetch('/api/stripe/create-payment-intent', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ 
+          body: JSON.stringify({
             amount,
             email: orderDetails?.email,
             metadata: {
@@ -177,25 +213,46 @@ const PaymentForm = ({ amount, orderDetails }) => {
         });
 
         if (!response.ok) {
-          throw new Error('Makse algatamine ebaõnnestus');
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to create payment intent');
         }
 
         const data = await response.json();
+        
+        if (!data.clientSecret) {
+          throw new Error('No client secret received');
+        }
+
         setClientSecret(data.clientSecret);
       } catch (error) {
         console.error('Error creating payment intent:', error);
+        setError(error.message);
       }
     };
 
-    if (amount) {
+    if (amount && amount > 0) {
       createPaymentIntent();
     }
   }, [amount, orderDetails]);
 
+  if (error) {
+    return (
+      <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
+        <div className="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+          </svg>
+          <span>{error}</span>
+        </div>
+      </div>
+    );
+  }
+
   if (!clientSecret) {
     return (
-      <div className="flex justify-center items-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
+      <div className="flex flex-col items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mb-4"></div>
+        <div className="text-gray-600">Laeb makse vormi...</div>
       </div>
     );
   }
@@ -212,13 +269,8 @@ const PaymentForm = ({ amount, orderDetails }) => {
             colorBackground: '#ffffff',
             borderRadius: '8px',
           },
-          rules: {
-            '.Input': {
-              border: '1px solid #e2e8f0',
-              boxShadow: 'none',
-            },
-          },
         },
+        loader: 'auto',
       }}
     >
       <CheckoutForm amount={amount} orderDetails={orderDetails} />

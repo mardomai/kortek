@@ -1,47 +1,47 @@
 const express = require('express');
-const router = express.Router();
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const dotenv = require('dotenv');
 
-// Create a payment intent
-router.post('/create-payment-intent', async (req, res) => {
+// Load environment variables
+dotenv.config();
+
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('STRIPE_SECRET_KEY is not set in environment variables');
+}
+
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const router = express.Router();
+
+// Create payment intent endpoint
+router.post('/stripe/create-payment-intent', express.json(), async (req, res) => {
+  console.log('Received create-payment-intent request');
+  console.log('Request body:', req.body);
+  
   try {
-    const { amount, email, metadata } = req.body;
+    const { amount } = req.body;
 
     if (!amount || amount <= 0) {
-      return res.status(400).json({ error: 'Summa on kohustuslik' });
+      console.log('Invalid amount:', amount);
+      return res.status(400).json({ error: 'Valid amount is required' });
     }
 
-    // Create or retrieve customer if email is provided
-    let customer;
-    if (email) {
-      try {
-        const customers = await stripe.customers.list({ email, limit: 1 });
-        customer = customers.data[0] || await stripe.customers.create({ email });
-      } catch (err) {
-        console.error('Error handling customer:', err);
-        // Continue without customer if there's an error
-      }
-    }
+    console.log('Creating payment intent with amount:', amount);
 
     // Create a PaymentIntent with the order amount and currency
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100), // Convert to cents
       currency: 'eur',
-      customer: customer?.id,
-      metadata: {
-        email,
-        ...metadata
-      },
       automatic_payment_methods: {
         enabled: true,
       },
-      description: `Order: ${metadata?.items || 'Product purchase'}`,
-      setup_future_usage: customer ? 'off_session' : undefined,
+    });
+
+    console.log('Payment intent created:', {
+      id: paymentIntent.id,
+      clientSecret: paymentIntent.client_secret ? 'exists' : 'missing',
     });
 
     res.json({
-      clientSecret: paymentIntent.client_secret,
-      customerId: customer?.id
+      clientSecret: paymentIntent.client_secret
     });
   } catch (error) {
     console.error('Error creating payment intent:', error);
@@ -52,9 +52,10 @@ router.post('/create-payment-intent', async (req, res) => {
   }
 });
 
-// Webhook handler for Stripe events
-router.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+// Stripe webhook endpoint
+router.post('/stripe/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
   const sig = req.headers['stripe-signature'];
+  console.log('Received webhook request');
 
   let event;
 
@@ -64,12 +65,12 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
       sig,
       process.env.STRIPE_WEBHOOK_SECRET
     );
+    console.log('Webhook event type:', event.type);
   } catch (err) {
     console.error('Webhook signature verification failed:', err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  // Handle the event
   try {
     switch (event.type) {
       case 'payment_intent.succeeded':
@@ -77,13 +78,8 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
         console.log('Payment succeeded:', {
           id: paymentIntent.id,
           amount: paymentIntent.amount / 100,
-          customer: paymentIntent.customer,
           metadata: paymentIntent.metadata,
         });
-        // Here you would typically:
-        // 1. Update order status in your database
-        // 2. Send confirmation email
-        // 3. Trigger any necessary fulfillment processes
         break;
 
       case 'payment_intent.payment_failed':
@@ -91,21 +87,7 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
         console.log('Payment failed:', {
           id: failedPayment.id,
           amount: failedPayment.amount / 100,
-          customer: failedPayment.customer,
           error: failedPayment.last_payment_error,
-        });
-        // Here you would typically:
-        // 1. Update order status in your database
-        // 2. Send notification to customer
-        break;
-
-      case 'payment_intent.requires_action':
-        const actionRequired = event.data.object;
-        console.log('Payment requires action:', {
-          id: actionRequired.id,
-          amount: actionRequired.amount / 100,
-          customer: actionRequired.customer,
-          nextAction: actionRequired.next_action,
         });
         break;
 

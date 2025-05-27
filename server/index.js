@@ -2,10 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
 const nodemailer = require('nodemailer');
-require('dotenv').config();
+const dotenv = require('dotenv');
+const path = require('path');
+
+// Load environment variables
+dotenv.config();
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
@@ -16,6 +20,9 @@ const stripeRoutes = require('./api/stripe');
 
 // Use routes
 app.use('/api/stripe', stripeRoutes);
+
+// Stripe webhook needs raw body
+app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }));
 
 // Configure multer for file uploads
 const upload = multer({
@@ -107,6 +114,14 @@ app.post('/api/send-email', upload.array('files'), async (req, res) => {
       details: error.message
     });
   }
+});
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// The "catchall" handler for any request that doesn't match the ones above
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 // Start server
