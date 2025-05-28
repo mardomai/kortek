@@ -25,7 +25,7 @@ function ProductCard({ product }) {
         </Link>
         <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
         <div className="flex items-center justify-between">
-          <p className="text-black font-semibold">${product.price.toFixed(2)}</p>
+          <p className="text-black font-semibold">€{product.price.toFixed(2)}</p>
           <button
             onClick={() => addToCart(product)}
             className="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded transition-colors"

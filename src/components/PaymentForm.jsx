@@ -189,13 +189,20 @@ const CheckoutForm = ({ amount, orderDetails }) => {
 const PaymentForm = ({ amount, orderDetails }) => {
   const [clientSecret, setClientSecret] = useState(null);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const createPaymentIntent = async () => {
       try {
+        setIsLoading(true);
+        setError(null);
+
         if (!amount || amount <= 0) {
           throw new Error('Invalid amount');
         }
+
+        // Convert euros to cents for Stripe
+        const amountInCents = Math.round(amount * 100);
 
         const response = await fetch('/api/stripe/create-payment-intent', {
           method: 'POST',
@@ -203,7 +210,7 @@ const PaymentForm = ({ amount, orderDetails }) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            amount,
+            amount: amountInCents,
             email: orderDetails?.email,
             metadata: {
               items: orderDetails?.items,
@@ -226,7 +233,9 @@ const PaymentForm = ({ amount, orderDetails }) => {
         setClientSecret(data.clientSecret);
       } catch (error) {
         console.error('Error creating payment intent:', error);
-        setError(error.message);
+        setError(error.message || 'Network error occurred. Please check your connection and try again.');
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -234,6 +243,15 @@ const PaymentForm = ({ amount, orderDetails }) => {
       createPaymentIntent();
     }
   }, [amount, orderDetails]);
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mb-4"></div>
+        <div className="text-gray-600">Laeb makse vormi...</div>
+      </div>
+    );
+  }
 
   if (error) {
     return (
@@ -244,17 +262,18 @@ const PaymentForm = ({ amount, orderDetails }) => {
           </svg>
           <span>{error}</span>
         </div>
+        <button 
+          onClick={() => window.location.reload()} 
+          className="mt-4 text-sm text-red-600 hover:text-red-800 underline"
+        >
+          Try again
+        </button>
       </div>
     );
   }
 
   if (!clientSecret) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mb-4"></div>
-        <div className="text-gray-600">Laeb makse vormi...</div>
-      </div>
-    );
+    return null;
   }
 
   return (

@@ -21,9 +21,6 @@ const stripeRoutes = require('./api/stripe');
 // Use routes
 app.use('/api/stripe', stripeRoutes);
 
-// Stripe webhook needs raw body
-app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }));
-
 // Configure multer for file uploads
 const upload = multer({
   storage: multer.memoryStorage(),
