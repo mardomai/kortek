@@ -1,11 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
 
 function Accessories() {
-  const { addToCart } = useCart();
-  const [addedToCart, setAddedToCart] = React.useState(null);
-
   const products = [
     {
       id: 11,
@@ -75,12 +71,6 @@ function Accessories() {
     }
   ];
 
-  const handleAddToCart = (product) => {
-    addToCart({ ...product, quantity: 1 });
-    setAddedToCart(product.id);
-    setTimeout(() => setAddedToCart(null), 2000);
-  };
-
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="text-center mb-12">
@@ -146,24 +136,12 @@ function Accessories() {
                 <span className="text-2xl font-bold text-gray-900">
                   €{product.price.toFixed(2)}
                 </span>
-                <div className="space-x-2">
-                  <button
-                    onClick={() => handleAddToCart(product)}
-                    className={`px-4 py-2 rounded transition-colors ${
-                      addedToCart === product.id
-                        ? 'bg-green-500 text-white'
-                        : 'bg-black text-white hover:bg-gray-800'
-                    }`}
-                  >
-                    {addedToCart === product.id ? 'Lisatud' : 'Lisa korvi'}
-                  </button>
-                  <Link
-                    to={`/product/${product.id}`}
-                    className="inline-block px-4 py-2 border border-black rounded hover:bg-gray-100 transition-colors"
-                  >
-                    Vaata lähemalt
-                  </Link>
-                </div>
+                <Link
+                  to={`/product/${product.id}`}
+                  className="inline-block px-6 py-2 bg-black text-white rounded hover:bg-gray-800 transition-colors"
+                >
+                  Vaata lähemalt
+                </Link>
               </div>
             </div>
           </div>
