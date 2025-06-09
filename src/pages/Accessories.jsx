@@ -1,58 +1,120 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 
 function Accessories() {
+  const { addToCart } = useCart();
+  const [addedToCart, setAddedToCart] = React.useState(null);
+
   const products = [
     {
-      id: 10,
-      name: 'Katuse Lisaplekid',
-      description: 'Professionaalsed lisaplekid katuse servadele ja üleminekutele',
-      price: 49.99,
-      image: '/products/metal-accessories.jpg',
+      id: 11,
+      name: 'Harjaplekk Premium',
+      description: 'Kvaliteetne harjaplekk katuse harja kaitsmiseks ja viimistlemiseks',
+      price: 19.99,
+      image: '/products/ridge-flashing.jpg',
+      features: [
+        'Vastupidav tsingitud teras',
+        'UV-kindel pulbervärv',
+        'Lihtne paigaldada',
+        'Sobib kõikidele katusematerjalidele',
+        'Ilmastikukindel',
+        'Garantii 10 aastat',
+      ],
+      specifications: {
+        'Materjal': 'Tsingitud teras',
+        'Pikkus': '2000 mm',
+        'Laius': '312 mm',
+        'Värv': 'Must/Pruun/Hall',
+        'Paksus': '0.5 mm',
+      }
     },
     {
-      id: 11,
-      name: 'Korstna Plekitööd',
-      description: 'Kvaliteetsed korstna plekitööd ja ühendused',
-      price: 79.99,
-      image: '/products/chimney-work.jpg',
+      id: 12,
+      name: 'Otsaplekk Standard',
+      description: 'Vastupidav otsaplekk katuse servade kaitsmiseks ja viimistlemiseks',
+      price: 15.99,
+      image: '/products/verge-flashing.jpg',
+      features: [
+        'Kvaliteetne tsingitud teras',
+        'UV-kindel värv',
+        'Universaalne kinnitus',
+        'Sobib kõikidele katustele',
+        'Vastupidav ilmastikule',
+        'Garantii 5 aastat',
+      ],
+      specifications: {
+        'Materjal': 'Tsingitud teras',
+        'Pikkus': '2000 mm',
+        'Laius': '150 mm',
+        'Värv': 'Must/Pruun/Hall',
+        'Paksus': '0.5 mm',
+      }
+    },
+    {
+      id: 13,
+      name: 'Neeluplekk Pro',
+      description: 'Professionaalne neeluplekk katuse neelukohtade kaitsmiseks',
+      price: 24.99,
+      image: '/products/valley-flashing.jpg',
+      features: [
+        'Tugevdatud konstruktsioon',
+        'UV-kindel pulbervärv',
+        'Suur vee läbilaskevõime',
+        'Sobib kõikidele katusematerjalidele',
+        'Ilmastikukindel',
+        'Garantii 10 aastat',
+      ],
+      specifications: {
+        'Materjal': 'Tsingitud teras',
+        'Pikkus': '2000 mm',
+        'Laius': '500 mm',
+        'Värv': 'Must/Pruun/Hall',
+        'Paksus': '0.5 mm',
+      }
     }
   ];
+
+  const handleAddToCart = (product) => {
+    addToCart({ ...product, quantity: 1 });
+    setAddedToCart(product.id);
+    setTimeout(() => setAddedToCart(null), 2000);
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-black mb-4">Katuse lisaplekid ja plekksepatööd</h1>
+        <h1 className="text-4xl font-bold text-black mb-4">Katuse Lisaplekid</h1>
         <p className="text-xl text-gray-600">
-          Professionaalsed plekksepatööd ja kvaliteetsed lisaplekid teie katusele
+          Kvaliteetsed lisaplekid ja plekksepatööd teie katuse täiuslikuks viimistluseks
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-black mb-4">Meie plekksepatööd</h2>
+          <h2 className="text-2xl font-bold text-black mb-4">Miks valida meie lisaplekid?</h2>
           <ul className="space-y-3 text-gray-600">
-            <li>✓ Katuse lisaplekid</li>
-            <li>✓ Korstna plekitööd</li>
-            <li>✓ Katuse läbiviigud</li>
-            <li>✓ Räästaplekid</li>
-            <li>✓ Harjaplekid</li>
+            <li>✓ Kõrgekvaliteediline tsingitud teras</li>
+            <li>✓ UV-kindel pulbervärv</li>
+            <li>✓ Täpne mõõtmine ja valmistamine</li>
+            <li>✓ Professionaalne paigaldus</li>
+            <li>✓ Pikaajaline garantii</li>
           </ul>
         </div>
 
         <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-black mb-4">Miks valida meid?</h2>
+          <h2 className="text-2xl font-bold text-black mb-4">Meie teenused</h2>
           <ul className="space-y-3 text-gray-600">
-            <li>✓ Pikaajaline kogemus</li>
-            <li>✓ Professionaalne töö</li>
-            <li>✓ Kvaliteetsed materjalid</li>
-            <li>✓ Kiire teostus</li>
-            <li>✓ Garantii tehtud töödele</li>
+            <li>✓ Tasuta konsultatsioon</li>
+            <li>✓ Mõõtmine objektil</li>
+            <li>✓ Plekkdetailide valmistamine</li>
+            <li>✓ Professionaalne paigaldus</li>
+            <li>✓ Garantiiremont</li>
           </ul>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {products.map((product) => (
           <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden">
             <img
@@ -70,16 +132,38 @@ function Accessories() {
               <p className="text-gray-600 mb-4">
                 {product.description}
               </p>
+              
+              <div className="mb-4">
+                <h4 className="font-semibold mb-2">Omadused:</h4>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  {product.features.slice(0, 3).map((feature, index) => (
+                    <li key={index}>• {feature}</li>
+                  ))}
+                </ul>
+              </div>
+
               <div className="flex items-center justify-between">
                 <span className="text-2xl font-bold text-gray-900">
                   €{product.price.toFixed(2)}
                 </span>
-                <Link
-                  to={`/product/${product.id}`}
-                  className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors"
-                >
-                  Vaata lähemalt
-                </Link>
+                <div className="space-x-2">
+                  <button
+                    onClick={() => handleAddToCart(product)}
+                    className={`px-4 py-2 rounded transition-colors ${
+                      addedToCart === product.id
+                        ? 'bg-green-500 text-white'
+                        : 'bg-black text-white hover:bg-gray-800'
+                    }`}
+                  >
+                    {addedToCart === product.id ? 'Lisatud' : 'Lisa korvi'}
+                  </button>
+                  <Link
+                    to={`/product/${product.id}`}
+                    className="inline-block px-4 py-2 border border-black rounded hover:bg-gray-100 transition-colors"
+                  >
+                    Vaata lähemalt
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
