@@ -10,6 +10,10 @@ import CompletedWorks from './pages/CompletedWorks';
 import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Fassaadid from './pages/Fassaadid';
+import Windows from './pages/Windows';
+import Safety from './pages/Safety';
+import Drainage from './pages/Drainage';
+import Accessories from './pages/Accessories';
 
 export const router = createBrowserRouter([
   {
@@ -55,6 +59,22 @@ export const router = createBrowserRouter([
       {
         path: 'privacy-policy',
         element: <PrivacyPolicy />,
+      },
+      {
+        path: 'windows',
+        element: <Windows />,
+      },
+      {
+        path: 'safety',
+        element: <Safety />,
+      },
+      {
+        path: 'drainage',
+        element: <Drainage />,
+      },
+      {
+        path: 'accessories',
+        element: <Accessories />,
       },
     ],
   },

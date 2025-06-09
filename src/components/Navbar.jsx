@@ -4,17 +4,17 @@ import { useCart } from '../context/CartContext';
 import { useState } from 'react';
 
 function Navbar() {
-  const { cartItemsCount } = useCart();
+  const { getCartCount } = useCart();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const categories = [
-    { id: 'metal', name: 'Plekk-katused' },
-    { id: 'tile', name: 'Kivikatused' },
-    { id: 'eternit', name: 'Eterniitkatused' },
-    { id: 'windows', name: 'Katuseaknad' },
-    { id: 'safety', name: 'Turvatooted' },
-    { id: 'drainage', name: 'Vihmaveesüsteemid' },
-    { id: 'accessories', name: 'Katuse lisaplekid ja plekksepatööd' },
+    { id: 'metal', name: 'Plekk-katused', path: '/?category=metal' },
+    { id: 'tile', name: 'Kivikatused', path: '/?category=tile' },
+    { id: 'eternit', name: 'Eterniitkatused', path: '/?category=eternit' },
+    { id: 'windows', name: 'Katuseaknad', path: '/windows' },
+    { id: 'safety', name: 'Turvatooted', path: '/safety' },
+    { id: 'drainage', name: 'Vihmaveesüsteemid', path: '/drainage' },
+    { id: 'accessories', name: 'Katuse lisaplekid ja plekksepatööd', path: '/accessories' },
   ];
 
   return (
@@ -40,7 +40,7 @@ function Navbar() {
                   {categories.map(category => (
                     <Link
                       key={category.id}
-                      to={`/?category=${category.id}`}
+                      to={category.path}
                       className="block px-4 py-2 text-black hover:bg-gray-100"
                       onClick={() => setIsDropdownOpen(false)}
                     >
@@ -65,9 +65,9 @@ function Navbar() {
 
             <Link to="/cart" className="relative text-black">
               <ShoppingCartIcon className="h-6 w-6" />
-              {cartItemsCount > 0 && (
+              {getCartCount() > 0 && (
                 <span className="absolute -top-2 -right-2 bg-black text-white rounded-full h-5 w-5 flex items-center justify-center text-xs">
-                  {cartItemsCount}
+                  {getCartCount()}
                 </span>
               )}
             </Link>
