@@ -17,7 +17,7 @@ function Home() {
           <div className="p-6 flex flex-col h-full">
             <div className="mb-8">
               <img
-                src="/images/ruukki.svg"
+                src="/images/ruukki.png"
                 alt="Ruukki"
                 className="h-16 object-contain mx-auto mb-8"
               />
@@ -42,7 +42,7 @@ function Home() {
           <div className="p-6 flex flex-col h-full">
             <div className="mb-8">
               <img
-                src="/images/bmi-monier.svg"
+                src="/images/monier.png"
                 alt="BMI Monier"
                 className="h-16 object-contain mx-auto mb-8"
               />
@@ -67,7 +67,8 @@ function Home() {
           <div className="p-6 flex flex-col h-full">
             <div className="mb-8">
               <img
-                src="/images/bestor.svg"
+                src="/images/bestor.png
+                "
                 alt="Bestor Group"
                 className="h-16 object-contain mx-auto mb-8"
               />
