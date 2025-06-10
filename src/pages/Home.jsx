@@ -69,7 +69,7 @@ function Home() {
                               <img
                   src="/images/bestor.png"
                   alt="Bestor Group"
-                  className="h-36 object-contain mx-auto mb-8"
+                  className="h-24 object-contain mx-auto mb-8"
                 />
               <h2 className="text-2xl font-bold text-black mb-4">Eterniitkatused</h2>
               <p className="text-gray-700">
