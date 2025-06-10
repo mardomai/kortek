@@ -116,7 +116,7 @@ function Safety() {
         </div>
 
         <div className="flex flex-col space-y-8">
-          <div className="relative h-[500px] rounded-lg overflow-hidden shadow-lg">
+          <div className="relative h-[300px] rounded-lg overflow-hidden shadow-lg">
             <img
               src="/images/ruukki.png"
               alt="Ruukki katuse turvatooted"
