@@ -74,81 +74,83 @@ function Safety() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-black mb-4">Katuse Turvatooted</h1>
-        <p className="text-xl text-gray-600">
-          Professionaalsed katuseturvasüsteemid teie ja teie vara kaitseks
-        </p>
+        <h1 className="text-4xl font-bold text-black mb-4">Katuse turvatooted</h1>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-black mb-4">Miks on turvatooted olulised?</h2>
-          <ul className="space-y-3 text-gray-600">
-            <li>✓ Tagavad ohutuse katuse hooldamisel</li>
-            <li>✓ Kaitsevad inimesi ja vara kukkuva lume eest</li>
-            <li>✓ Vastavad kõikidele ohutusnõuetele</li>
-            <li>✓ Pikaajaline vastupidavus</li>
-            <li>✓ Suurendavad kinnisvara väärtust</li>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+        <div className="prose prose-lg">
+          <div className="bg-gray-50 p-6 rounded-lg mb-8">
+            <p className="text-lg text-gray-700 font-semibold mb-4">
+              Oleme Ruukki ametlik partner ja edasimüüja.
+            </p>
+            <p className="text-lg text-gray-700">
+              Ruukki toodete põhjamaine kvaliteet on tuntud üle maailma. Müüme ja paigaldame erinevaid katuseprofiile, turvaelemente ja vihmaveesüsteeme.
+            </p>
+          </div>
+
+          <p className="text-lg text-gray-700 mb-8">
+            Kõikidel hoonetel peab olema ohutu juurdepääs katusele, katusel liikumiseks harjale ning korstna, katuseluukide ja muude hooldatavate kohtade juurde. Uue katuse hankimisel tuleb mõelda ka selle hilisemale hooldusele:
+          </p>
+
+          <ul className="list-disc pl-6 mb-8 text-lg text-gray-700">
+            <li>korstna puhastamine;</li>
+            <li>katuse ja vihmaveerennide puhastamine puulehtedest ja muust prahist;</li>
+            <li>lume ja jää kukkumise tõkestamine maja vahetus läheduses;</li>
+            <li>ventilatsioonisüsteemide, päikesepaneelide hooldamine;</li>
+            <li>muud hooldustööd, mida tuleb teha katusel.</li>
           </ul>
+
+          <p className="text-lg text-gray-700 mb-8">
+            Turvaline ligipääs katusele on selle hooldamise puhul väga oluline. See tagab südamerahu nii majaomanikule kui ka näiteks korstnapühkijale. Alates 7.04.2017 on koduomanikul seadusest<sup>1</sup> tulenev kohustus tagada statsionaarsete ühendusteedega ja/või redeliga juurdepääs korstnale, vastasel juhul ei väljastata uuele/renoveeritavale ehitisele kasutusluba. Soovitame katuse turvatooted paigaldada koos katuse paigaldamisega, et säästa nii raha kui ka aega.
+          </p>
+
+          <p className="text-sm text-gray-500 mb-8">
+            <sup>1</sup> Siseministri määrus "Ehitisele esitatavad tuleohutusnõuded ja nõuded tuletõrje veevarustusele" § 26 lg 2
+          </p>
+
+          <div className="bg-gray-50 p-6 rounded-lg mb-8">
+            <p className="text-lg text-gray-700">
+              Propageerime alati turvalisust ja õnnetustevaba keskkonda – seda nii tarnijate valikul, tootmises, teenuste pakkumisel kui mõistagi ka siis, kui toode on lõppkliendi kasutuses. Ruukki toodete projekteerimisel on silmas peetud ohutut valmistamist, paigaldust ja lõppkasutust.
+            </p>
+          </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-black mb-4">Meie teenused</h2>
-          <ul className="space-y-3 text-gray-600">
-            <li>✓ Tasuta konsultatsioon</li>
-            <li>✓ Professionaalne paigaldus</li>
-            <li>✓ Ohutussüsteemide projekteerimine</li>
-            <li>✓ Iga-aastane ülevaatus</li>
-            <li>✓ Sertifitseeritud paigaldus</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {products.map((product) => (
-          <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="flex flex-col space-y-8">
+          <div className="relative h-[500px] rounded-lg overflow-hidden shadow-lg">
             <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-64 object-cover"
-              onError={(e) => {
-                e.target.src = '/images/placeholder.jpg';
-              }}
+              src="/images/ruukki.png"
+              alt="Ruukki katuse turvatooted"
+              className="w-full h-full object-cover"
             />
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                {product.name}
-              </h3>
-              <p className="text-gray-600 mb-4">
-                {product.description}
-              </p>
-              
-              <div className="mb-4">
-                <h4 className="font-semibold mb-2">Omadused:</h4>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  {product.features.slice(0, 3).map((feature, index) => (
-                    <li key={index}>• {feature}</li>
-                  ))}
-                </ul>
-              </div>
+          </div>
 
-              <div className="flex items-center justify-between">
-                <span className="text-2xl font-bold text-gray-900">
-                  €{product.price.toFixed(2)}
-                </span>
-                <Link
-                  to={`/product/${product.id}`}
-                  className="inline-block px-6 py-2 bg-black text-white rounded hover:bg-gray-800 transition-colors"
-                >
-                  Vaata lähemalt
-                </Link>
-              </div>
+          <div className="grid grid-cols-1 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h2 className="text-2xl font-bold text-black mb-4">Meie teenused</h2>
+              <ul className="space-y-3 text-gray-600">
+                <li>✓ Tasuta konsultatsioon</li>
+                <li>✓ Professionaalne paigaldus</li>
+                <li>✓ Garantiiremont</li>
+                <li>✓ Hooldus ja remont</li>
+                <li>✓ Turvatoodete paigaldus</li>
+              </ul>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h2 className="text-2xl font-bold text-black mb-4">Peamised turvatooted</h2>
+              <ul className="space-y-3 text-gray-600">
+                <li>✓ Katusesillad</li>
+                <li>✓ Turvapollarid</li>
+                <li>✓ Lumetõkked</li>
+                <li>✓ Katuseredel</li>
+                <li>✓ Seinaredel</li>
+              </ul>
             </div>
           </div>
-        ))}
+        </div>
       </div>
 
-      <div className="mt-12 text-center">
+      <div className="text-center">
         <Link
           to="/contact"
           className="inline-block bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors"
