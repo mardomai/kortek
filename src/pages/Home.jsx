@@ -15,18 +15,23 @@ function Home() {
         {/* Ruukki Section */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="p-6 flex flex-col h-full">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-black mb-4 text-center">Plekk-katused</h2>
-              <p className="text-gray-700 mb-8">
+            <div className="mb-8">
+              <img
+                src="/images/ruukki.svg"
+                alt="Ruukki"
+                className="h-16 object-contain mx-auto mb-8"
+              />
+              <h2 className="text-2xl font-bold text-black mb-4">Plekk-katused</h2>
+              <p className="text-gray-700">
                 Ruukkit usaldavad tuhanded koduomanikud nii Eestis kui ka kaugemal ja juba üle 25 aasta. Oleme Ruukki ametlik partner ja meie töö on sama kvaliteetne kui Ruukki tooted.
               </p>
             </div>
             <div className="mt-auto">
               <Link
                 to="/contact"
-                className="block text-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+                className="inline-block border-2 border-red-600 text-red-600 px-8 py-2 hover:bg-red-600 hover:text-white transition-colors"
               >
-                Küsi pakkumist
+                PLEKK-KATUSED
               </Link>
             </div>
           </div>
@@ -35,18 +40,23 @@ function Home() {
         {/* BMI Monier Section */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="p-6 flex flex-col h-full">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-black mb-4 text-center">Kivikatused</h2>
-              <p className="text-gray-700 mb-8">
+            <div className="mb-8">
+              <img
+                src="/images/bmi-monier.svg"
+                alt="BMI Monier"
+                className="h-16 object-contain mx-auto mb-8"
+              />
+              <h2 className="text-2xl font-bold text-black mb-4">Kivikatused</h2>
+              <p className="text-gray-700">
                 Tootevalikus on erinevad kivi- ja bituumenkatuste materjalid. Suures tootevalikus orienteerumiseks on meil BMI partnerina pädevad teadmised ning saame need sinu kasuks tööle panna.
               </p>
             </div>
             <div className="mt-auto">
               <Link
                 to="/contact"
-                className="block text-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+                className="inline-block border-2 border-red-600 text-red-600 px-8 py-2 hover:bg-red-600 hover:text-white transition-colors"
               >
-                Küsi pakkumist
+                KIVIKATUSED
               </Link>
             </div>
           </div>
@@ -55,18 +65,23 @@ function Home() {
         {/* Bestor Group Section */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="p-6 flex flex-col h-full">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-black mb-4 text-center">Eterniitkatused</h2>
-              <p className="text-gray-700 mb-8">
+            <div className="mb-8">
+              <img
+                src="/images/bestor.svg"
+                alt="Bestor Group"
+                className="h-16 object-contain mx-auto mb-8"
+              />
+              <h2 className="text-2xl font-bold text-black mb-4">Eterniitkatused</h2>
+              <p className="text-gray-700">
                 Eterniit kauakestev ja ohutu katusekattematerjal, mis on valmistatud tsemendist, lubjakivist, tselluloosist, veest ja kaasaegses materjalis asbesti asendanud PVA kiududest.
               </p>
             </div>
             <div className="mt-auto">
               <Link
                 to="/contact"
-                className="block text-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+                className="inline-block border-2 border-red-600 text-red-600 px-8 py-2 hover:bg-red-600 hover:text-white transition-colors"
               >
-                Küsi pakkumist
+                ETERNIITKATUSED
               </Link>
             </div>
           </div>
