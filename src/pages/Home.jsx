@@ -28,7 +28,7 @@ function Home() {
             </div>
             <div className="mt-auto">
               <Link
-                to="/contact"
+                to="/metal"
                 className="inline-block border-2 border-red-600 text-red-600 px-8 py-2 hover:bg-red-600 hover:text-white transition-colors"
               >
                 PLEKK-KATUSED
@@ -41,11 +41,11 @@ function Home() {
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="p-6 flex flex-col h-full">
             <div className="mb-8">
-              <img
-                src="/images/monier.png"
-                alt="BMI Monier"
-                className="h-16 object-contain mx-auto mb-8"
-              />
+                              <img
+                  src="/images/monier.png"
+                  alt="BMI Monier"
+                  className="h-24 object-contain mx-auto mb-8"
+                />
               <h2 className="text-2xl font-bold text-black mb-4">Kivikatused</h2>
               <p className="text-gray-700">
                 Tootevalikus on erinevad kivi- ja bituumenkatuste materjalid. Suures tootevalikus orienteerumiseks on meil BMI partnerina pädevad teadmised ning saame need sinu kasuks tööle panna.
@@ -53,7 +53,7 @@ function Home() {
             </div>
             <div className="mt-auto">
               <Link
-                to="/contact"
+                to="/tile"
                 className="inline-block border-2 border-red-600 text-red-600 px-8 py-2 hover:bg-red-600 hover:text-white transition-colors"
               >
                 KIVIKATUSED
@@ -66,12 +66,11 @@ function Home() {
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="p-6 flex flex-col h-full">
             <div className="mb-8">
-              <img
-                src="/images/bestor.png
-                "
-                alt="Bestor Group"
-                className="h-16 object-contain mx-auto mb-8"
-              />
+                              <img
+                  src="/images/bestor.png"
+                  alt="Bestor Group"
+                  className="h-24 object-contain mx-auto mb-8"
+                />
               <h2 className="text-2xl font-bold text-black mb-4">Eterniitkatused</h2>
               <p className="text-gray-700">
                 Eterniit kauakestev ja ohutu katusekattematerjal, mis on valmistatud tsemendist, lubjakivist, tselluloosist, veest ja kaasaegses materjalis asbesti asendanud PVA kiududest.
@@ -79,7 +78,7 @@ function Home() {
             </div>
             <div className="mt-auto">
               <Link
-                to="/contact"
+                to="/eternit"
                 className="inline-block border-2 border-red-600 text-red-600 px-8 py-2 hover:bg-red-600 hover:text-white transition-colors"
               >
                 ETERNIITKATUSED
