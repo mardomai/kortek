@@ -1,176 +1,146 @@
-import { useSearchParams, Link } from 'react-router-dom';
-
-const products = [
-  {
-    id: 1,
-    category: 'metal',
-    name: 'Klassikaline Plekk-katus',
-    price: 29.99,
-    image: '/products/metal-roof.jpg',
-    description: 'Kvaliteetne plekk-katuse paneel suurepärase vastupidavuse ja ilmastikukindlusega.',
-  },
-  {
-    id: 2,
-    category: 'tile',
-    name: 'Keraamilised Katusekivid',
-    price: 4.99,
-    image: '/products/tile-roof.jpg',
-    description: 'Traditsioonilised keraamilised katusekivid klassikalise välimuse ja pikaajalise kaitsega.',
-  },
-  {
-    id: 3,
-    category: 'eternit',
-    name: 'Eterniit Katuseplaadid',
-    price: 19.99,
-    image: '/products/eternit-roof.jpg',
-    description: 'Vastupidavad eterniitplaadid usaldusväärseks ja kuluefektiivseks katuse lahenduseks.',
-  },
-  {
-    id: 4,
-    category: 'windows',
-    name: 'Katuseaken',
-    price: 299.99,
-    image: '/products/roof-window.jpg',
-    description: 'Kaasaegne katuseaken loomulikuks valgustuseks ja ventilatsiooniks.',
-  },
-  {
-    id: 5,
-    category: 'safety',
-    name: 'Katuse Turvarööbas',
-    price: 159.99,
-    image: '/products/roof-safety.jpg',
-    description: 'Professionaalne turvarööbaste süsteem katuse hoolduseks ja kaitseks.',
-  },
-  {
-    id: 6,
-    category: 'drainage',
-    name: 'Vihmaveesüsteemi Komplekt',
-    price: 89.99,
-    image: '/products/drainage-system.jpg',
-    description: 'Täielik vihmaveesüsteemi komplekt koos vihmaveetorude ja ühendustega.',
-  },
-  {
-    id: 7,
-    category: 'accessories',
-    name: 'Plekitööde Komplekt',
-    price: 49.99,
-    image: '/products/metal-accessories.jpg',
-    description: 'Professionaalne plekkdetailide komplekt katuse servadele ja üleminekutele.',
-  },
-];
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Home() {
-  const [searchParams] = useSearchParams();
-  const category = searchParams.get('category');
-
-  const filteredProducts = category
-    ? products.filter(product => product.category === category)
-    : products;
-
-  const categoryTitles = {
-    metal: 'Plekk-katused',
-    tile: 'Kivikatused',
-    eternit: 'Eterniitkatused',
-    windows: 'Katuseaknad',
-    safety: 'Turvatooted',
-    drainage: 'Vihmaveesüsteemid',
-    accessories: 'Katuse lisaplekid ja plekksepatööd',
-  };
-
   return (
-    <div className="space-y-12">
-      {!category && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Plekk-katused Section */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold text-black mb-4">Plekk-katused</h2>
-            <p className="text-gray-600 mb-6">
-              Ruukkit usaldavad tuhanded koduomanikud nii Eestis kui ka kaugemal ja juba üle 25 aasta. 
-              Oleme Ruukki ametlik partner ja meie töö on sama kvaliteetne kui Ruukki tooted.
-            </p>
-            <Link
-              to="/?category=metal"
-              className="inline-block bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition-colors"
-            >
-              Plekk-katused
-            </Link>
-          </div>
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="text-center mb-16">
+        <h1 className="text-4xl font-bold text-black mb-6">Katuste ehitus ja renoveerimine</h1>
+        <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+          Müüme ja paigaldame eri tüüpi katuseid ja teeme kõik vajalikud eeltööd. Lisame katusele aknad, vajalikud turvatooted ja vihmaveesüsteemid. Katusetööd, fassaadide renoveerimine ja ehitus Saaremaal ning materjalide müük üle Eesti.
+        </p>
+      </div>
 
-          {/* Kivikatused Section */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold text-black mb-4">Kivikatused</h2>
-            <p className="text-gray-600 mb-6">
-              Tootevalikus on erinevad kivi- ja bituumenkatuste materjalid. Suures tootevalikus 
-              orienteerumiseks on meil BMI partnerina pädevad teadmised ning saame need sinu kasuks tööle panna.
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        {/* Ruukki Section */}
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="p-6">
+            <div className="h-24 flex items-center justify-center mb-6">
+              <img
+                src="/images/ruukki-logo.png"
+                alt="Ruukki"
+                className="h-full object-contain"
+              />
+            </div>
+            <h2 className="text-2xl font-bold text-black mb-4 text-center">Plekk-katused</h2>
+            <p className="text-gray-700">
+              Ruukkit usaldavad tuhanded koduomanikud nii Eestis kui ka kaugemal ja juba üle 25 aasta. Oleme Ruukki ametlik partner ja meie töö on sama kvaliteetne kui Ruukki tooted.
             </p>
-            <Link
-              to="/?category=tile"
-              className="inline-block bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition-colors"
-            >
-              Kivikatused
-            </Link>
           </div>
-
-          {/* Eterniitkatused Section */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold text-black mb-4">Eterniitkatused</h2>
-            <p className="text-gray-600 mb-6">
-              Eterniit kauakestev ja ohutu katusekattematerjal, mis on valmistatud tsemendist, 
-              lubjakivist, tselluloosist, veest ja kaasaegses materjalis asbesti asendanud PVA kiududest.
-            </p>
+          <div className="bg-gray-50 px-6 py-4">
             <Link
-              to="/?category=eternit"
-              className="inline-block bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition-colors"
+              to="/contact"
+              className="block text-center text-black hover:text-gray-700 font-semibold"
             >
-              Eterniitkatused
+              Küsi pakkumist →
             </Link>
           </div>
         </div>
-      )}
 
-      {category && (
-        <>
-          <h1 className="text-3xl font-bold text-black mb-8">
-            {categoryTitles[category]}
-          </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProducts.map(product => (
-              <div
-                key={product.id}
-                className="bg-white rounded-lg shadow-md overflow-hidden"
-              >
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-48 object-cover"
-                  onError={(e) => {
-                    e.target.src = '/images/placeholder.jpg';
-                  }}
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    {product.description}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-gray-900">
-                      €{product.price.toFixed(2)}
-                    </span>
-                    <Link
-                      to={`/product/${product.id}`}
-                      className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors"
-                    >
-                      Vaata lähemalt
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
+        {/* BMI Monier Section */}
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="p-6">
+            <div className="h-24 flex items-center justify-center mb-6">
+              <img
+                src="/images/bmi-logo.png"
+                alt="BMI Monier"
+                className="h-full object-contain"
+              />
+            </div>
+            <h2 className="text-2xl font-bold text-black mb-4 text-center">Kivikatused</h2>
+            <p className="text-gray-700">
+              Tootevalikus on erinevad kivi- ja bituumenkatuste materjalid. Suures tootevalikus orienteerumiseks on meil BMI partnerina pädevad teadmised ning saame need sinu kasuks tööle panna.
+            </p>
           </div>
-        </>
-      )}
+          <div className="bg-gray-50 px-6 py-4">
+            <Link
+              to="/contact"
+              className="block text-center text-black hover:text-gray-700 font-semibold"
+            >
+              Küsi pakkumist →
+            </Link>
+          </div>
+        </div>
+
+        {/* Bestor Group Section */}
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="p-6">
+            <div className="h-24 flex items-center justify-center mb-6">
+              <img
+                src="/images/bestor-logo.png"
+                alt="Bestor Group"
+                className="h-full object-contain"
+              />
+            </div>
+            <h2 className="text-2xl font-bold text-black mb-4 text-center">Eterniitkatused</h2>
+            <p className="text-gray-700">
+              Eterniit kauakestev ja ohutu katusekattematerjal, mis on valmistatud tsemendist, lubjakivist, tselluloosist, veest ja kaasaegses materjalis asbesti asendanud PVA kiududest.
+            </p>
+          </div>
+          <div className="bg-gray-50 px-6 py-4">
+            <Link
+              to="/contact"
+              className="block text-center text-black hover:text-gray-700 font-semibold"
+            >
+              Küsi pakkumist →
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <h3 className="text-xl font-bold text-black mb-4">Katuseaknad</h3>
+          <p className="text-gray-600 mb-4">
+            VELUX katuseaknad ja lisatarvikud
+          </p>
+          <Link
+            to="/windows"
+            className="text-black hover:text-gray-700 font-semibold"
+          >
+            Loe lähemalt →
+          </Link>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <h3 className="text-xl font-bold text-black mb-4">Turvatooted</h3>
+          <p className="text-gray-600 mb-4">
+            Katuse turvatooted ja paigaldus
+          </p>
+          <Link
+            to="/safety"
+            className="text-black hover:text-gray-700 font-semibold"
+          >
+            Loe lähemalt →
+          </Link>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <h3 className="text-xl font-bold text-black mb-4">Vihmaveesüsteemid</h3>
+          <p className="text-gray-600 mb-4">
+            Kvaliteetsed vihmaveesüsteemid
+          </p>
+          <Link
+            to="/drainage"
+            className="text-black hover:text-gray-700 font-semibold"
+          >
+            Loe lähemalt →
+          </Link>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <h3 className="text-xl font-bold text-black mb-4">Lisaplekid</h3>
+          <p className="text-gray-600 mb-4">
+            Katuse lisaplekid ja plekksepatööd
+          </p>
+          <Link
+            to="/accessories"
+            className="text-black hover:text-gray-700 font-semibold"
+          >
+            Loe lähemalt →
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
