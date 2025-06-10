@@ -12,6 +12,78 @@ function ProductPage() {
   // This would typically come from an API or database
   // For now, we'll combine all products from different categories
   const allProducts = [
+    // Metal Roofs
+    {
+      id: 1,
+      category: 'metal',
+      name: 'Klassikaline Plekk-katus',
+      price: 29.99,
+      image: '/products/metal-roof.jpg',
+      description: 'Kvaliteetne plekk-katuse paneel suurepärase vastupidavuse ja ilmastikukindlusega.',
+      features: [
+        'Vastupidav tsingitud teras',
+        'UV-kindel pulbervärv',
+        'Lihtne paigaldus',
+        'Sobib kõikidele katusekaldele',
+        'Ilmastikukindel',
+        'Garantii 10 aastat',
+      ],
+      specifications: {
+        'Materjal': 'Tsingitud teras',
+        'Paksus': '0.5 mm',
+        'Kattekiht': 'Polüester',
+        'Värv': 'Must/Pruun/Hall',
+        'Garantii': '10 aastat',
+      }
+    },
+    // Tile Roofs
+    {
+      id: 2,
+      category: 'tile',
+      name: 'Keraamilised Katusekivid',
+      price: 4.99,
+      image: '/products/tile-roof.jpg',
+      description: 'Traditsioonilised keraamilised katusekivid klassikalise välimuse ja pikaajalise kaitsega.',
+      features: [
+        'Naturaalne materjal',
+        'Pikk eluiga',
+        'Hea soojapidavus',
+        'Ilmastikukindel',
+        'Tulekindel',
+        'Garantii 30 aastat',
+      ],
+      specifications: {
+        'Materjal': 'Keraamiline',
+        'Mõõdud': '330x420 mm',
+        'Kaal': '3.6 kg/tk',
+        'Värv': 'Punane/Must',
+        'Garantii': '30 aastat',
+      }
+    },
+    // Eternit Roofs
+    {
+      id: 3,
+      category: 'eternit',
+      name: 'Eterniit Katuseplaadid',
+      price: 19.99,
+      image: '/products/eternit-roof.jpg',
+      description: 'Vastupidavad eterniitplaadid usaldusväärseks ja kuluefektiivseks katuse lahenduseks.',
+      features: [
+        'Keskkonnasõbralik',
+        'Vastupidav',
+        'Ilmastikukindel',
+        'Tulekindel',
+        'Lihtne paigaldada',
+        'Garantii 15 aastat',
+      ],
+      specifications: {
+        'Materjal': 'Kiudtsement',
+        'Mõõdud': '1130x1250 mm',
+        'Paksus': '6.0 mm',
+        'Värv': 'Hall/Must/Punane',
+        'Garantii': '15 aastat',
+      }
+    },
     // VELUX Windows
     {
       id: 4,
