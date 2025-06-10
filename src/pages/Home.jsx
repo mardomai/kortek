@@ -44,7 +44,7 @@ function Home() {
                               <img
                   src="/images/monier.png"
                   alt="BMI Monier"
-                  className="h-24 object-contain mx-auto mb-8"
+                  className="h-28 object-contain mx-auto mb-8"
                 />
               <h2 className="text-2xl font-bold text-black mb-4">Kivikatused</h2>
               <p className="text-gray-700">
@@ -54,7 +54,7 @@ function Home() {
             <div className="mt-auto">
               <Link
                 to="/tile"
-                className="inline-block border-2 border-red-600 text-red-600 px-8 py-2 hover:bg-red-600 hover:text-white transition-colors"
+                className="inline-block border-2 border-red-600 text-red-600  -8 py-2 hover:bg-red-600 hover:text-white transition-colors"
               >
                 KIVIKATUSED
               </Link>
@@ -69,7 +69,7 @@ function Home() {
                               <img
                   src="/images/bestor.png"
                   alt="Bestor Group"
-                  className="h-24 object-contain mx-auto mb-8"
+                  className="h-36 object-contain mx-auto mb-8"
                 />
               <h2 className="text-2xl font-bold text-black mb-4">Eterniitkatused</h2>
               <p className="text-gray-700">
