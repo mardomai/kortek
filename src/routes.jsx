@@ -14,6 +14,9 @@ import Windows from './pages/Windows';
 import Safety from './pages/Safety';
 import Drainage from './pages/Drainage';
 import Accessories from './pages/Accessories';
+import MetalRoofs from './pages/MetalRoofs';
+import TileRoofs from './pages/TileRoofs';
+import EternitRoofs from './pages/EternitRoofs';
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +78,18 @@ export const router = createBrowserRouter([
       {
         path: 'accessories',
         element: <Accessories />,
+      },
+      {
+        path: 'metal-roofs',
+        element: <MetalRoofs />,
+      },
+      {
+        path: 'tile-roofs',
+        element: <TileRoofs />,
+      },
+      {
+        path: 'eternit-roofs',
+        element: <EternitRoofs />,
       },
     ],
   },

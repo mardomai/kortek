@@ -8,9 +8,9 @@ function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const categories = [
-    { id: 'metal', name: 'Plekk-katused', path: '/?category=metal' },
-    { id: 'tile', name: 'Kivikatused', path: '/?category=tile' },
-    { id: 'eternit', name: 'Eterniitkatused', path: '/?category=eternit' },
+    { id: 'metal', name: 'Plekk-katused', path: '/metal-roofs' },
+    { id: 'tile', name: 'Kivikatused', path: '/tile-roofs' },
+    { id: 'eternit', name: 'Eterniitkatused', path: '/eternit-roofs' },
     { id: 'windows', name: 'Katuseaknad', path: '/windows' },
     { id: 'safety', name: 'Turvatooted', path: '/safety' },
     { id: 'drainage', name: 'Vihmaveesüsteemid', path: '/drainage' },
@@ -63,10 +63,14 @@ function Navbar() {
               Tehtud Tööd
             </Link>
 
-            <Link to="/cart" className="relative text-black">
+            <Link to="/contact" className="text-black">
+              Kontakt
+            </Link>
+
+            <Link to="/cart" className="text-black relative">
               <ShoppingCartIcon className="h-6 w-6" />
               {getCartCount() > 0 && (
-                <span className="absolute -top-2 -right-2 bg-black text-white rounded-full h-5 w-5 flex items-center justify-center text-xs">
+                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {getCartCount()}
                 </span>
               )}
