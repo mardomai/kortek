@@ -8,9 +8,9 @@ function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const categories = [
-    { id: 'metal', name: 'Plekk-katused', path: '/roofs/metal' },
-    { id: 'tile', name: 'Kivikatused', path: '/roofs/tile' },
-    { id: 'eternit', name: 'Eterniitkatused', path: '/roofs/eternit' },
+    { id: 'metal', name: 'Plekk-katused', path: '/?category=metal' },
+    { id: 'tile', name: 'Kivikatused', path: '/?category=tile' },
+    { id: 'eternit', name: 'Eterniitkatused', path: '/?category=eternit' },
     { id: 'windows', name: 'Katuseaknad', path: '/windows' },
     { id: 'safety', name: 'Turvatooted', path: '/safety' },
     { id: 'drainage', name: 'Vihmaveesüsteemid', path: '/drainage' },

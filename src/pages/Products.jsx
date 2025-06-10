@@ -1,35 +1,53 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
+// Import products from ProductPage
 const products = [
+  // Metal Roofs
   {
     id: 1,
-    name: 'Ruukki Classic C',
-    description: 'Klassikaline katuseplekk, mis sobib igale majale',
-    price: 24.99,
-    image: '/images/products/ruukki-classic.jpg',
+    category: 'metal',
+    name: 'Klassikaline Plekk-katus',
+    price: 29.99,
+    image: '/products/metal-roof.jpg',
+    description: 'Kvaliteetne plekk-katuse paneel suurepärase vastupidavuse ja ilmastikukindlusega.',
   },
+  // Tile Roofs
   {
     id: 2,
-    name: 'Ruukki Hyygge',
-    description: 'Modernne ja minimalistlik katusekate',
-    price: 29.99,
-    image: '/images/products/ruukki-hyygge.jpg',
+    category: 'tile',
+    name: 'Keraamilised Katusekivid',
+    price: 4.99,
+    image: '/products/tile-roof.jpg',
+    description: 'Traditsioonilised keraamilised katusekivid klassikalise välimuse ja pikaajalise kaitsega.',
   },
+  // Eternit Roofs
   {
     id: 3,
-    name: 'Ruukki Adamante',
-    description: 'Tugev ja vastupidav katuseplekk',
-    price: 27.99,
-    image: '/images/products/ruukki-adamante.jpg',
+    category: 'eternit',
+    name: 'Eterniit Katuseplaadid',
+    price: 19.99,
+    image: '/products/eternit-roof.jpg',
+    description: 'Vastupidavad eterniitplaadid usaldusväärseks ja kuluefektiivseks katuse lahenduseks.',
   },
-  // Add more products as needed
 ];
+
+const categoryTitles = {
+  metal: 'Plekk-katused',
+  tile: 'Kivikatused',
+  eternit: 'Eterniitkatused',
+};
 
 function Products() {
   const { addToCart } = useCart();
   const [addedToCart, setAddedToCart] = useState(null);
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get('category');
+
+  const filteredProducts = category
+    ? products.filter(product => product.category === category)
+    : products;
 
   const handleAddToCart = (product) => {
     addToCart(product);
@@ -41,7 +59,7 @@ function Products() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
-          Meie tooted
+          {category ? categoryTitles[category] : 'Meie tooted'}
         </h1>
         <p className="mt-4 text-xl text-gray-600">
           Kvaliteetsed katusekatted ja fassaadimaterjalid
@@ -49,7 +67,7 @@ function Products() {
       </div>
 
       <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <div
             key={product.id}
             className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-[1.02]"
