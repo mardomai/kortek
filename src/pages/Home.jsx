@@ -28,7 +28,7 @@ function Home() {
             </div>
             <div className="mt-auto">
               <Link
-                to="/roofs/metal"
+                to="/metal-roofs"
                 className="inline-block border-2 border-red-600 text-red-600 px-8 py-2 hover:bg-red-600 hover:text-white transition-colors"
               >
                 PLEKK-KATUSED
@@ -53,7 +53,7 @@ function Home() {
             </div>
             <div className="mt-auto">
               <Link
-                to="/roofs/tile"
+                to="/tile-roofs"
                 className="inline-block border-2 border-red-600 text-red-600 px-8 py-2 hover:bg-red-600 hover:text-white transition-colors"
               >
                 KIVIKATUSED
@@ -78,7 +78,7 @@ function Home() {
             </div>
             <div className="mt-auto">
               <Link
-                to="/roofs/eternit"
+                to="/eternit-roofs"
                 className="inline-block border-2 border-red-600 text-red-600 px-8 py-2 hover:bg-red-600 hover:text-white transition-colors"
               >
                 ETERNIITKATUSED
