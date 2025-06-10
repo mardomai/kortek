@@ -14,51 +14,41 @@ function Home() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
         {/* Ruukki Section */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="p-6">
-            <div className="h-24 flex items-center justify-center mb-6">
-              <img
-                src="/images/ruukki-logo.png"
-                alt="Ruukki"
-                className="h-full object-contain"
-              />
+          <div className="p-6 flex flex-col h-full">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-black mb-4 text-center">Plekk-katused</h2>
+              <p className="text-gray-700 mb-8">
+                Ruukkit usaldavad tuhanded koduomanikud nii Eestis kui ka kaugemal ja juba üle 25 aasta. Oleme Ruukki ametlik partner ja meie töö on sama kvaliteetne kui Ruukki tooted.
+              </p>
             </div>
-            <h2 className="text-2xl font-bold text-black mb-4 text-center">Plekk-katused</h2>
-            <p className="text-gray-700">
-              Ruukkit usaldavad tuhanded koduomanikud nii Eestis kui ka kaugemal ja juba üle 25 aasta. Oleme Ruukki ametlik partner ja meie töö on sama kvaliteetne kui Ruukki tooted.
-            </p>
-          </div>
-          <div className="bg-gray-50 px-6 py-4">
-            <Link
-              to="/contact"
-              className="block text-center text-black hover:text-gray-700 font-semibold"
-            >
-              Küsi pakkumist →
-            </Link>
+            <div className="mt-auto">
+              <Link
+                to="/contact"
+                className="block text-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                Küsi pakkumist
+              </Link>
+            </div>
           </div>
         </div>
 
         {/* BMI Monier Section */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="p-6">
-            <div className="h-24 flex items-center justify-center mb-6">
-              <img
-                src="/images/bmi-logo.png"
-                alt="BMI Monier"
-                className="h-full object-contain"
-              />
+          <div className="p-6 flex flex-col h-full">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-black mb-4 text-center">Kivikatused</h2>
+              <p className="text-gray-700 mb-8">
+                Tootevalikus on erinevad kivi- ja bituumenkatuste materjalid. Suures tootevalikus orienteerumiseks on meil BMI partnerina pädevad teadmised ning saame need sinu kasuks tööle panna.
+              </p>
             </div>
-            <h2 className="text-2xl font-bold text-black mb-4 text-center">Kivikatused</h2>
-            <p className="text-gray-700">
-              Tootevalikus on erinevad kivi- ja bituumenkatuste materjalid. Suures tootevalikus orienteerumiseks on meil BMI partnerina pädevad teadmised ning saame need sinu kasuks tööle panna.
-            </p>
-          </div>
-          <div className="bg-gray-50 px-6 py-4">
-            <Link
-              to="/contact"
-              className="block text-center text-black hover:text-gray-700 font-semibold"
-            >
-              Küsi pakkumist →
-            </Link>
+            <div className="mt-auto">
+              <Link
+                to="/contact"
+                className="block text-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                Küsi pakkumist
+              </Link>
+            </div>
           </div>
         </div>
 
